@@ -52,29 +52,3 @@ test('Injected page variable, check for login error message and then login playw
     let allCardTitles = await cardTitles.allTextContents();
     console.log('All card titles text ', allCardTitles);
 });
-
-test.only('Login', async ({browser, page}) =>
-{
-    let username = page.locator('#userEmail');
-    let password = page.locator('#userPassword');
-    let loginBtn = page.locator('#login')
-    let cardTitles = page.locator(".card-body b");
-
-    // Remember that JS is asynchronous not sequential
-    await page.goto('https://rahulshettyacademy.com/client');
-
-    // Print the page title
-    console.log('Page title: ', await page.title());
-
-    await expect(page).toHaveTitle("Let's Shop");
-    await username.fill('shellymutugrigg@gmail.com');
-    await password.fill('gazxHSwK$oBbd*c43t4S');
-    await loginBtn.click();
-
-    // Print the text of the first card title
-    console.log('Card title text ', await cardTitles.first().textContent());
-
-    // allTextContent() method will not wait for element load like at L#49
-    let allCardTitles = await cardTitles.allTextContents();
-    console.log('All card titles text ', allCardTitles);
-});
