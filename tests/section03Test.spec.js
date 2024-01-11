@@ -4,6 +4,7 @@ const {test, expect} = require('@playwright/test');
 // Run playwright UI: npx playwright test --ui 
 // Run playwright UI: npx playwright test
 // Run specific playwright file: npx playwright test tests/uiLoginTest.spec.js 
+// test.only to run a single test
 
 test('Login and wait for network to be idle', async ({browser, page}) =>
 {
