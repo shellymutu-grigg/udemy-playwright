@@ -20,7 +20,7 @@ test('A page context playwright test', async ({browser}) =>
     await expect(page).toHaveTitle('Google');
 });
 
-test('Injected page variable, check for login error message and then login playwright test', async ({page}) =>
+test('Test using injected page variable with setup', async ({page}) =>
 {
     let username = page.locator('#username');
     let password = page.locator("[type='password']");
@@ -35,7 +35,13 @@ test('Injected page variable, check for login error message and then login playw
     await expect(page).toHaveTitle("LoginPage Practise | Rahul Shetty Academy");
     await username.fill('rahulshetty');
     await password.fill('learning');
-    await signInBtn.click();
+
+    await Promise.all(
+        [
+            page.waitForURL('**\/target.html'),
+            await signInBtn.click(),
+        ]
+    )
 
     // Print out error message text
     console.log('Error text:', await page.locator("[style*='block']").textContent());

@@ -6,7 +6,7 @@ const {test, expect} = require('@playwright/test');
 // Run specific playwright file: npx playwright test tests/section04Test.spec.js 
 // test.only to run a single test
 
-test('Injected page variable, check for login error message and then login playwright test', async ({page}) =>
+test('Playwright assertions', async ({page}) =>
 {
     let username = page.locator('#username');
     let password = page.locator("[type='password']");
@@ -14,8 +14,8 @@ test('Injected page variable, check for login error message and then login playw
     let dropdown = page.locator("select.form-control");
     let radioButton = page.locator('.radiotextsty').last();
     let checkbox = page.locator('#terms');
-    let documentLink = page.locator("[href*='document-request']")
-    // Remember that JS is asynchronous not sequential
+    let documentLink = page.locator("[href*='documents-request']")
+
     await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
 
     // Print the page title
@@ -37,5 +37,32 @@ test('Injected page variable, check for login error message and then login playw
     expect(await  checkbox.isChecked()).toBeFalsy();
     console.log('Checkbox is selected:', await checkbox.isChecked())
     // await page.pause();
-    await expect(documentLink).toHaveAttribute('class', 'blinkingTexts')
+    await expect(documentLink).toHaveAttribute('class', 'blinkingText')
+});
+
+test('Playwright child windows handling', async ({browser}) =>
+{
+    let context = await browser.newContext();
+    let landingPage = await context.newPage();
+    let username = landingPage.locator('#username');
+    let documentLink = landingPage.locator("[href*='documents-request']")
+
+    await landingPage.goto('https://rahulshettyacademy.com/loginpagePractise/');
+
+    let [reqDocsPage] = await Promise.all(
+        [
+            // Listen for a new page tab to load in an asynchronous manner
+            context.waitForEvent('page'),
+            documentLink.click(),
+        ]
+    )
+    let headingText = await reqDocsPage.locator('.red').textContent();
+    console.log('Header text on request documents page: ', headingText);
+
+    let domain = headingText.split('@')[1].split(' ')[0];
+    console.log('Domain on documents page: ', domain);
+
+    await username.fill(domain);
+    await landingPage.bringToFront();
+    console.log('Username field populated with: ', await username.inputValue());
 });
