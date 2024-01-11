@@ -12,6 +12,8 @@ test('Injected page variable, check for login error message and then login playw
     let password = page.locator("[type='password']");
     let signInBtn = page.locator('#signInBtn')
     let dropdown = page.locator("select.form-control");
+    let radioButton = page.locator('.radiotextsty').last();
+    let checkbox = page.locator('#terms');
     // Remember that JS is asynchronous not sequential
     await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
 
@@ -22,7 +24,16 @@ test('Injected page variable, check for login error message and then login playw
     await username.fill('rahulshettyacademy');
     await password.fill('learning');
     await dropdown.selectOption('consult');
-    await page.locator('.radiotextsty').last().click();
+
+    await radioButton.click();
     await page.locator('#okayBtn').click();
-    await page.pause();
+    await expect(radioButton).toBeChecked();
+    console.log('Last radio button is checked:', await radioButton.isChecked())
+
+    await checkbox.click();
+    await expect(checkbox).toBeChecked();
+    await checkbox.uncheck();
+    expect(await  checkbox.isChecked()).toBeFalsy();
+    console.log('Checkbox is selected:', await checkbox.isChecked())
+    // await page.pause();
 });
