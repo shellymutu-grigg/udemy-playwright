@@ -20,4 +20,7 @@ test('Injected page variable playwright test', async ({browser, page}) =>
     // Print the page title
     console.log(await page.title());
     await expect(page).toHaveTitle("Google");
+    await page.locator('#username').fill('rahulshetty');
+    await page.locator("[type='password']").fill('learning');
+    await page.locator('#signInBtn').click();
 });
