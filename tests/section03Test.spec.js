@@ -3,10 +3,10 @@ const {test, expect} = require('@playwright/test');
 // Run in non headless mode: npx playwright test --headed 
 // Run playwright UI: npx playwright test --ui 
 // Run playwright UI: npx playwright test
-// Run specific playwright file: npx playwright test tests/uiLoginTest.spec.js 
+// Run specific playwright file: npx playwright test tests/section03Test.spec.js
 // test.only to run a single test
 
-test('Login and wait for network to be idle', async ({browser, page}) =>
+test('Login and wait for network to be idle', async ({page}) =>
 {
     let username = page.locator('#userEmail');
     let password = page.locator('#userPassword');
@@ -20,8 +20,8 @@ test('Login and wait for network to be idle', async ({browser, page}) =>
     console.log('Page title: ', await page.title());
 
     await expect(page).toHaveTitle("Let's Shop");
-    await username.fill('shellymutugrigg@gmail.com');
-    await password.fill('gazxHSwK$oBbd*c43t4S');
+    await username.fill(process.env.username_rahulshetty);
+    await password.fill(process.env.password_rahulshetty);
     await loginBtn.click();
 
     // allTextContent() method will not wait for element load like at L#49

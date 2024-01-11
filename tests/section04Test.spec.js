@@ -3,10 +3,10 @@ const {test, expect} = require('@playwright/test');
 // Run in non headless mode: npx playwright test --headed 
 // Run playwright UI: npx playwright test --ui 
 // Run playwright UI: npx playwright test
-// Run specific playwright file: npx playwright test tests/uiLoginTest.spec.js 
+// Run specific playwright file: npx playwright test tests/section04Test.spec.js 
 // test.only to run a single test
 
-test('Injected page variable, check for login error message and then login playwright test', async ({browser, page}) =>
+test('Injected page variable, check for login error message and then login playwright test', async ({page}) =>
 {
     let username = page.locator('#username');
     let password = page.locator("[type='password']");
@@ -14,6 +14,7 @@ test('Injected page variable, check for login error message and then login playw
     let dropdown = page.locator("select.form-control");
     let radioButton = page.locator('.radiotextsty').last();
     let checkbox = page.locator('#terms');
+    let documentLink = page.locator("[href*='document-request']")
     // Remember that JS is asynchronous not sequential
     await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
 
@@ -36,4 +37,5 @@ test('Injected page variable, check for login error message and then login playw
     expect(await  checkbox.isChecked()).toBeFalsy();
     console.log('Checkbox is selected:', await checkbox.isChecked())
     // await page.pause();
+    await expect(documentLink).toHaveAttribute('class', 'blinkingTexts')
 });
