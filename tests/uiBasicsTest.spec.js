@@ -19,8 +19,11 @@ test('A page context playwright test', async ({browser}) =>
 });
 
 // test.only to run a single test
-test('Injected page variable playwright test', async ({browser, page}) =>
+test('Injected page variable and check for error message playwright test', async ({browser, page}) =>
 {
+    let username = page.locator('#username');
+    let password = page.locator("[type='password']");
+    let signInBtn = page.locator('#signInBtn')
     // Remember that JS is asynchronous not sequential
     await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
 
@@ -28,12 +31,19 @@ test('Injected page variable playwright test', async ({browser, page}) =>
     await console.log('Page title: ', await page.title());
 
     await expect(page).toHaveTitle("LoginPage Practise | Rahul Shetty Academy");
-    await page.locator('#username').fill('rahulshetty');
-    await page.locator("[type='password']").fill('learning');
-    await page.locator('#signInBtn').click();
+    await username.fill('rahulshetty');
+    await password.fill('learning');
+    await signInBtn.click();
 
     // Print out error message text
     console.log('Error text:', await page.locator("[style*='block']").textContent());
 
     await expect(page.locator("[style*='block']")).toContainText('Incorrect username');
+
+    await username.fill('rahulshettyacademy');
+    await password.fill('learning');
+    await signInBtn.click();
+
+    // Print the text of the second card-body element
+    await console.log('Card-body text ', await page.locator(".card-body a").nth(1).textContent());
 });
