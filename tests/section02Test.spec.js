@@ -20,7 +20,7 @@ test('A page context playwright test', async ({browser}) =>
     await expect(page).toHaveTitle('Google');
 });
 
-test('Test using injected page variable with setup', async ({page}) =>
+test('Injected page variable with core playwright setup', async ({page}) =>
 {
     let username = page.locator('#username');
     let password = page.locator("[type='password']");
@@ -38,7 +38,7 @@ test('Test using injected page variable with setup', async ({page}) =>
 
     await Promise.all(
         [
-            page.waitForURL('**\/target.html'),
+            page.waitForURL('**/loginpagePractise/'),
             await signInBtn.click(),
         ]
     )

@@ -12,10 +12,11 @@ let config = {
   },
   reporter: 'html',
   use: {
-    trace: 'on-first-retry',
     // Safari = webkit
     // browserName: 'chromium'
-    headless: false
+    headless: false,
+    screenshot: 'on',
+    trace: 'retain-on-failure', // 'off', 'on'
   },
 
   /* Configure projects for major browsers */
