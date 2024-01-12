@@ -6,6 +6,7 @@ const {test, expect} = require('@playwright/test');
 // Run specific playwright file: npx playwright test tests/section04Test.spec.js 
 // test.only to run a single test
 // Run specific playwright file in debug mode: npx playwright test tests/section04Test.spec.js --debug
+// Generate code: npx playwright codegen htps://www.google.com
 
 test('Playwright assertions', async ({page}) =>
 {
