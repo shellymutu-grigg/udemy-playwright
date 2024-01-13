@@ -1,13 +1,14 @@
-const {test, expect} = require('@playwright/test');
-const exp = require('constants');
+/** 
+ * Run in non headless mode: npx playwright test --headed 
+ * Run playwright UI: npx playwright test --ui 
+ * Run playwright: npx playwright test
+ * Run specific playwright file: npx playwright test tests/section06Test.spec.js 
+ * test.only to run a single test
+ * Run specific playwright file in debug mode: npx playwright test tests/section06Test.spec.js --debug
+ * Generate code: npx playwright codegen htps://www.google.com
+*/
 
-// Run in non headless mode: npx playwright test --headed 
-// Run playwright UI: npx playwright test --ui 
-// Run playwright UI: npx playwright test
-// Run specific playwright file: npx playwright test tests/section04Test.spec.js 
-// test.only to run a single test
-// Run specific playwright file in debug mode: npx playwright test tests/section04Test.spec.js --debug
-// Generate code: npx playwright codegen htps://www.google.com
+const {test, expect} = require('@playwright/test');
 
 test('Playwright script to dynamically find product', async ({page}) =>
 {
@@ -53,9 +54,21 @@ test('Playwright script to dynamically find product', async ({page}) =>
     await page.locator('div li').first().waitFor();
 
     // isVisible() does not implement the auto wait
-    const isPresent = page.locator("h3:has-text('" + productName + "')").isVisible();
-    await expect(isPresent).toBeTruthy();
-
+    const isPresent = await page.locator("h3:has-text('" + productName + "')").isVisible();
+    expect(isPresent).toBeTruthy();
+    await page.locator('text=Checkout').click();
+    await page.locator("[placeholder='Select Country']").pressSequentially('ind');
+    const dropdownOptions = await page.locator('.ta-results');
+    await dropdownOptions.waitFor();
+    const optionsCount = await dropdownOptions.locator('button').count();
+    for(let i = 0; i < optionsCount; i++){
+        const text = await dropdownOptions.locator('button').nth(i).textContent();
+        if(text.trim() === 'India'){
+            await dropdownOptions.locator('button').nth(i).click();
+            break;
+        }
+    }
+    await page.pause();
 });
 
 async function resetPassword(page, username, password, loginBtn){
