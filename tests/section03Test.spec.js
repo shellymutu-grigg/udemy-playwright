@@ -12,10 +12,10 @@ const {test, expect} = require('@playwright/test');
 
 test('Login and wait for network to be idle', async ({page}) =>
 {
-    let username = page.locator('#userEmail');
-    let password = page.locator('#userPassword');
-    let loginBtn = page.locator('#login')
-    let cardTitles = page.locator(".card-body b");
+    const username = page.locator('#userEmail');
+    const password = page.locator('#userPassword');
+    const loginBtn = page.locator('#login')
+    const cardTitles = page.locator(".card-body b");
 
     // Remember that JS is asynchronous not sequential
     await page.goto('https://rahulshettyacademy.com/client');
@@ -31,6 +31,6 @@ test('Login and wait for network to be idle', async ({page}) =>
     // allTextContent() method will not wait for element load like at L#49
     await page.waitForLoadState('networkidle');
     // await cardTitles.first().waitFor();
-    let allCardTitles = await cardTitles.allTextContents();
+    const allCardTitles = await cardTitles.allTextContents();
     console.log('All card titles text ', allCardTitles);
 });
