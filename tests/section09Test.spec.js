@@ -30,7 +30,9 @@ const resetPasswordPayLoad = {
     userPassword: process.env.password_rahulshetty,
     confirmPassword:process.env.password_rahulshetty
 }
+
 let response;
+
 test.beforeAll( async () => {
     const apiContext = await request.newContext();
     const localApiUtils = new apiUtils(apiContext, loginPayLoad);
@@ -60,4 +62,7 @@ test('Playwright create order using API', async ({ page }) =>
             break;
         }
     }
+        
+    const orderIdDetails = await page.locator('.col-text').textContent();
+    await expect(response.orderId.includes(orderIdDetails)).toBeTruthy();
 });
