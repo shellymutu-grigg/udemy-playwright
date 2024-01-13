@@ -2,9 +2,9 @@
  * Run in non headless mode: npx playwright test --headed 
  * Run playwright UI: npx playwright test --ui 
  * Run playwright: npx playwright test
- * Run specific playwright file: npx playwright test tests/section10Test.spec.js 
+ * Run specific playwright file: npx playwright test tests/section10SessionTest.spec.js 
  * test.only to run a single test
- * Run specific playwright file in debug mode: npx playwright test tests/section10Test.spec.js --debug
+ * Run specific playwright file in debug mode: npx playwright test tests/section10SessionTest.spec.js --debug
  * Generate code: npx playwright codegen htps://www.google.com
  * Debug test: CMD + SHIFT + P > Debug: Debug npm Script 
  * open trace.zip in https://trace.playwright.dev to track all data
