@@ -77,6 +77,5 @@ test('Playwright mock an API response to display no orders', async ({ page }) =>
     await page.waitForResponse('https://rahulshettyacademy.com/api/ecom/order/get-orders-for-customer/*');
     await page.waitForLoadState('networkidle');
     const message = await page.locator('.mt-4').textContent();
-    console.log('Message diaplyed:', message);
-    await page.pause();
+    console.log('Message displayed:', message);
 });

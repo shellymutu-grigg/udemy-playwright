@@ -12,7 +12,6 @@
 
 const { test, expect, request } = require('@playwright/test');
 let webContext;
-let response;
 
 test.beforeAll( async ({ browser }) => {
     const context = await browser.newContext();
