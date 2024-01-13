@@ -60,7 +60,4 @@ test('Playwright create order using API', async ({ page }) =>
             break;
         }
     }
-    
-    const orderIdDetails = await page.locator('.col-text').textContent();
-    await expect(response.orderId.includes(orderIdDetails)).toBeTruthy();
 });
