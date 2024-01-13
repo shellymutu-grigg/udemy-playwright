@@ -8,9 +8,9 @@
  * Generate code: npx playwright codegen htps://www.google.com
 */
 
-const {test, expect} = require('@playwright/test');
+const { test, expect } = require('@playwright/test');
 
-test('A page context playwright test', async ({browser}) =>
+test('A page context playwright test', async ({ browser }) =>
 {
     // Remember that JS is asynchronous not sequential
     // Create Chrome instance or inject page variable in fat arrow function
@@ -24,7 +24,7 @@ test('A page context playwright test', async ({browser}) =>
     await expect(page).toHaveTitle('Google');
 });
 
-test('Injected page variable with core playwright setup', async ({page}) =>
+test('Injected page variable with core playwright setup', async ({ page }) =>
 {
     const username = page.locator('#username');
     const password = page.locator("[type='password']");

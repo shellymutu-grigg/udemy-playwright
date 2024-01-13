@@ -8,9 +8,9 @@
  * Generate code: npx playwright codegen htps://www.google.com
 */
 
-const {test, expect} = require('@playwright/test');
+const { test, expect } = require('@playwright/test');
 
-test('Login and wait for network to be idle', async ({page}) =>
+test('Login and wait for network to be idle', async ({ page }) =>
 {
     const username = page.locator('#userEmail');
     const password = page.locator('#userPassword');

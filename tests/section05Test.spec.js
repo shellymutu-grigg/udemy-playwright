@@ -10,7 +10,7 @@
 
 const { test } = require('@playwright/test');
 
-test('Playwright codegen', async ({page}) =>
+test('Playwright codegen', async ({ page }) =>
 {
     
 });

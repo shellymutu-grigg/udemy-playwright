@@ -8,9 +8,9 @@
  * Generate code: npx playwright codegen htps://www.google.com
 */
 
-const {test, expect} = require('@playwright/test');
+const { test, expect } = require('@playwright/test');
 
-test('Playwright assertions', async ({page}) =>
+test('Playwright assertions', async ({ page }) =>
 {
     const username = page.locator('#username');
     const password = page.locator("[type='password']");
@@ -43,7 +43,7 @@ test('Playwright assertions', async ({page}) =>
     await expect(documentLink).toHaveAttribute('class', 'blinkingText')
 });
 
-test('Playwright child windows handling', async ({browser}) =>
+test('Playwright child windows handling', async ({ browser }) =>
 {
     const context = await browser.newContext();
     const landingPage = await context.newPage();

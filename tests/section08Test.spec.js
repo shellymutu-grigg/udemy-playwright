@@ -10,7 +10,7 @@
 
 const { test, expect } = require('@playwright/test');
 
-test('Playwright navigation & handling hidden elements', async ({page}) =>
+test('Playwright navigation & handling hidden elements', async ({ page }) =>
 {
     await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
     await page.goto('https://www.google.com');
@@ -23,7 +23,7 @@ test('Playwright navigation & handling hidden elements', async ({page}) =>
     await expect(page.locator('#displayed-text')).toBeHidden();
 });
 
-test('Playwright handling dialog pop-ups & hover', async ({page}) =>
+test('Playwright handling dialog pop-ups & hover', async ({ page }) =>
 {
     await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
 
@@ -38,7 +38,7 @@ test('Playwright handling dialog pop-ups & hover', async ({page}) =>
     await page.locator('#mousehover').hover();
 });
 
-test.only('Playwright handling iframes', async ({page}) =>
+test.only('Playwright handling iframes', async ({ page }) =>
 {
     await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
     const framesPage = page.frameLocator('#courses-iframe');

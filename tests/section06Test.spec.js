@@ -8,11 +8,11 @@
  * Generate code: npx playwright codegen htps://www.google.com
 */
 
-const {test, expect} = require('@playwright/test');
+const { test, expect } = require('@playwright/test');
 
 import { resetPassword } from '../functions/resetPassword';
 
-test('Playwright script to dynamically find product', async ({page}) =>
+test('Playwright script to dynamically find product', async ({ page }) =>
 {
     const email = process.env.username_rahulshetty;
     const password = process.env.password_rahulshetty;

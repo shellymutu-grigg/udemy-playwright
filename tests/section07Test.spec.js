@@ -10,7 +10,7 @@
 
 const { test } = require('@playwright/test');
 
-test('Playwright getByLabel locator', async ({page}) =>
+test('Playwright getByLabel locator', async ({ page }) =>
 {
     await page.goto('https://rahulshettyacademy.com/angularpractice');
 
@@ -20,7 +20,7 @@ test('Playwright getByLabel locator', async ({page}) =>
     await page.getByLabel('Gender').selectOption('Female');
 });
 
-test('Playwright getByPlaceholder, getByRole locator', async ({page}) =>
+test('Playwright getByPlaceholder, getByRole locator', async ({ page }) =>
 {
     await page.goto('https://rahulshettyacademy.com/angularpractice');
 
