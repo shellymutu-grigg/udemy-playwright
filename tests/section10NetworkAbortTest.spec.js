@@ -2,9 +2,9 @@
  * Run in non headless mode: npx playwright test --headed 
  * Run playwright UI: npx playwright test --ui 
  * Run playwright: npx playwright test
- * Run specific playwright file: npx playwright test tests/section10NetworkSecurityTest.spec.js
+ * Run specific playwright file: npx playwright test tests/section10NetworkAbortTest.spec.js
  * test.only to run a single test
- * Run specific playwright file in debug mode: npx playwright test tests/section10NetworkSecurityTest.spec.js --debug 
+ * Run specific playwright file in debug mode: npx playwright test tests/section10NetworkAbortTest.spec.js --debug 
  * Generate code: npx playwright codegen htps://www.google.com
 */
 
@@ -30,7 +30,7 @@ test.beforeAll( async () => {
     token = await localApiUtils.getToken(resetPasswordPayLoad);
 });
 
-test('Playwright highjack API call to try to access order user does not have access to', async ({ page }) =>
+test('Playwright block an API call', async ({ page }) =>
 {
     console.log('token', token);
 
@@ -39,6 +39,16 @@ test('Playwright highjack API call to try to access order user does not have acc
         window.localStorage.setItem('token', value)
     }, token);
     
+    await page.route('**/*.{jpg, jpeg, png}', route => {
+        route.abort();
+    })
+    await page.on('request', request => {
+        console.log('request url:', request.url());
+    });
+    await page.on('response', response => {
+        console.log('response url:', response.url());
+        console.log('response status:', response.status());
+    });
     await page.goto('https://rahulshettyacademy.com/client');
     await page.locator("button[routerlink='/dashboard/myorders']").click();
     await page.waitForLoadState('networkidle');

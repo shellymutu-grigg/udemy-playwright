@@ -44,7 +44,7 @@ test.beforeAll( async () => {
     response = await localApiUtils.createOrder(orderPayLoad, resetPasswordPayLoad);
 });
 
-test('Playwright mock an API response to display no orders', async ({ page }) =>
+test('Playwright mock an API response to force UI to display no orders', async ({ page }) =>
 {
     console.log('response.token', response.token);
     console.log('response.orderId', response.orderId);
