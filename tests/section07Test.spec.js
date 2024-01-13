@@ -10,7 +10,7 @@
 
 const {test, expect} = require('@playwright/test');
 
-test('Playwright specific locators', async ({page}) =>
+test('Playwright getByLabel locator', async ({page}) =>
 {
     await page.goto('https://rahulshettyacademy.com/angularpractice');
 
@@ -18,4 +18,16 @@ test('Playwright specific locators', async ({page}) =>
     await page.getByLabel('Check me out if you Love IceCreams!').click();
     await page.getByLabel('Employed').check();
     await page.getByLabel('Gender').selectOption('Female');
+});
+
+test('Playwright getByPlaceholder, getByRole locator', async ({page}) =>
+{
+    await page.goto('https://rahulshettyacademy.com/angularpractice');
+
+    // Use placeholder to find local checkbox
+    await page.getByPlaceholder('Password').fill(process.env.password_rahulshetty);
+    await page.getByRole('button', { name: 'Submit' }).click();
+    await page.getByText('Success! The Form has been submitted successfully!.').click();
+    await page.getByRole('link', { name: 'Shop' }).click();
+    await page.locator('app-card').filter({ hasText: 'Nokia Edge'}).getByRole('button').click();
 });
