@@ -89,6 +89,20 @@ test('Playwright script to dynamically find product', async ({page}) =>
     await expect(page.locator(".user__name [type='text']").first()).toHaveText(email);
     await page.locator('.action__submit').click();
     await expect(page.locator('.hero-primary')).toHaveText(' Thankyou for the order. ');
-    const orderID = await page.locator('.em-spacer-1 .ng-star-inserted').textContent();
-    console.log('Order ID:', orderID);
+    const orderId = (await page.locator('.em-spacer-1 .ng-star-inserted').textContent()).split(' ')[2];
+    console.log('Order ID:', orderId);
+    await page.locator("button[routerlink='/dashboard/myorders']").click();
+    await page.waitForLoadState('networkidle');
+    await page.locator('tbody').waitFor();
+    const rows = await page.locator("tbody tr");
+    const rowCount = await rows.count();
+    for(let i = 0; i < rowCount; i++){
+        const rowOrderId = await rows.nth(i).locator('th').textContent();
+        if(orderId.includes(rowOrderId)){
+            await rows.nth(i).locator('button').first().click();
+            break;
+        }
+    }
+    const orderIdDetails = await page.locator('.col-text').textContent();
+    await expect(orderId.includes(orderIdDetails)).toBeTruthy();
 });
