@@ -23,7 +23,7 @@ test('Playwright navigation & handling hidden elements', async ({page}) =>
     await expect(page.locator('#displayed-text')).toBeHidden();
 });
 
-test.only('Playwright handling dialog pop-ups & hover', async ({page}) =>
+test('Playwright handling dialog pop-ups & hover', async ({page}) =>
 {
     await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
 
@@ -36,4 +36,13 @@ test.only('Playwright handling dialog pop-ups & hover', async ({page}) =>
     await expect(page.locator('#displayed-text')).toBeHidden();
 
     await page.locator('#mousehover').hover();
+});
+
+test.only('Playwright handling iframes', async ({page}) =>
+{
+    await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
+    const framesPage = page.frameLocator('#courses-iframe');
+    await framesPage.locator("li a[href*='lifetime-access']:visible").click();
+    const headerText = await framesPage.locator('.text h2').textContent();
+    console.log('Number in header:', headerText.split(' ')[1]);
 });
