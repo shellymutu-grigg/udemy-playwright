@@ -10,7 +10,7 @@
 
 const { test, expect } = require('@playwright/test');
 
-import { resetPassword } from '../functions/resetPassword';
+import { resetPassword } from '../utils/resetPassword';
 
 test('Playwright script to dynamically find product', async ({ page }) =>
 {
