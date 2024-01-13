@@ -14,8 +14,8 @@ test('A page context playwright test', async ({browser}) =>
 {
     // Remember that JS is asynchronous not sequential
     // Create Chrome instance or inject page variable in fat arrow function
-    let context = await browser.newContext();
-    let page = await context.newPage();
+    const context = await browser.newContext();
+    const page = await context.newPage();
     await page.goto('https://www.google.com/');
 
     // Print the page title
@@ -26,10 +26,10 @@ test('A page context playwright test', async ({browser}) =>
 
 test('Injected page variable with core playwright setup', async ({page}) =>
 {
-    let username = page.locator('#username');
-    let password = page.locator("[type='password']");
-    let signInBtn = page.locator('#signInBtn')
-    let cardTitles = page.locator(".card-body a");
+    const username = page.locator('#username');
+    const password = page.locator("[type='password']");
+    const signInBtn = page.locator('#signInBtn')
+    const cardTitles = page.locator(".card-body a");
     // Remember that JS is asynchronous not sequential
     await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
 
@@ -60,6 +60,6 @@ test('Injected page variable with core playwright setup', async ({page}) =>
     console.log('Card title text ', await cardTitles.nth(1).textContent());
 
     // allTextContent() method will not wait for element load like at L#49
-    let allCardTitles = await cardTitles.allTextContents();
+    const allCardTitles = await cardTitles.allTextContents();
     console.log('All card titles text ', allCardTitles);
 });

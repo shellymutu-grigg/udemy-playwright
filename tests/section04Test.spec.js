@@ -12,13 +12,12 @@ const {test, expect} = require('@playwright/test');
 
 test('Playwright assertions', async ({page}) =>
 {
-    let username = page.locator('#username');
-    let password = page.locator("[type='password']");
-    let signInBtn = page.locator('#signInBtn')
-    let dropdown = page.locator("select.form-control");
-    let radioButton = page.locator('.radiotextsty').last();
-    let checkbox = page.locator('#terms');
-    let documentLink = page.locator("[href*='documents-request']")
+    const username = page.locator('#username');
+    const password = page.locator("[type='password']");
+    const dropdown = page.locator("select.form-control");
+    const radioButton = page.locator('.radiotextsty').last();
+    const checkbox = page.locator('#terms');
+    const documentLink = page.locator("[href*='documents-request']")
 
     await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
 
@@ -46,24 +45,24 @@ test('Playwright assertions', async ({page}) =>
 
 test('Playwright child windows handling', async ({browser}) =>
 {
-    let context = await browser.newContext();
-    let landingPage = await context.newPage();
-    let username = landingPage.locator('#username');
-    let documentLink = landingPage.locator("[href*='documents-request']")
+    const context = await browser.newContext();
+    const landingPage = await context.newPage();
+    const username = landingPage.locator('#username');
+    const documentLink = landingPage.locator("[href*='documents-request']")
 
     await landingPage.goto('https://rahulshettyacademy.com/loginpagePractise/');
 
-    let [reqDocsPage] = await Promise.all(
+    const [reqDocsPage] = await Promise.all(
         [
             // Listen for a new page tab to load in an asynchronous manner
             context.waitForEvent('page'),
             documentLink.click(),
         ]
     )
-    let headingText = await reqDocsPage.locator('.red').textContent();
+    const headingText = await reqDocsPage.locator('.red').textContent();
     console.log('Header text on request documents page: ', headingText);
 
-    let domain = headingText.split('@')[1].split(' ')[0];
+    const domain = headingText.split('@')[1].split(' ')[0];
     console.log('Domain on documents page: ', domain);
 
     await username.fill(domain);
