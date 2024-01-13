@@ -40,6 +40,22 @@ test('Playwright script to dynamically find product', async ({page}) =>
     let allCardTitles = await cardTitles.allTextContents();
     console.log('All product titles:', allCardTitles);
 
+    let count = await products.count();
+    console.log('count:', count);
+    for(let i = 0; i < count; i++){
+        if(await products.nth(i).locator('b').textContent() === productName){
+            // Add the product to cart
+            await products.nth(i).locator('text= Add to Cart').click();
+            break;
+        }
+    }
+    await page.locator("[routerlink='/dashboard/cart']").click();
+    await page.locator('div li').first().waitFor();
+
+    // isVisible() does not implement the auto wait
+    const isPresent = page.locator("h3:has-text('" + productName + "')").isVisible();
+    await expect(isPresent).toBeTruthy();
+
 });
 
 async function resetPassword(page, username, password, loginBtn){
