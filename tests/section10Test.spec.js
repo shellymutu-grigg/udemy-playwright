@@ -6,6 +6,7 @@
  * test.only to run a single test
  * Run specific playwright file in debug mode: npx playwright test tests/section10Test.spec.js --debug
  * Generate code: npx playwright codegen htps://www.google.com
+ * Debug test: CMD + SHIFT + P > Debug: Debug npm Script 
 */
 
 const { test, expect, request } = require('@playwright/test');
