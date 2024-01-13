@@ -22,3 +22,18 @@ test('Playwright navigation & handling hidden elements', async ({page}) =>
     await page.locator('#hide-textbox').click();
     await expect(page.locator('#displayed-text')).toBeHidden();
 });
+
+test.only('Playwright handling dialog pop-ups & hover', async ({page}) =>
+{
+    await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
+
+    await page.locator('#confirmbtn').click();
+    // dialog => dialog.dismiss()
+    await page.on('dialog', dialog => dialog.accept());
+
+    await expect(page.locator('#displayed-text')).toBeVisible();
+    await page.locator('#hide-textbox').click();
+    await expect(page.locator('#displayed-text')).toBeHidden();
+
+    await page.locator('#mousehover').hover();
+});
