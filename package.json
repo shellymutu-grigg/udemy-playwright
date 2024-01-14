@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test",
+    "test": "npx playwright test --config playwright.config.js",
     "webTests": "npx playwright test --grep @Web",
-    "apiTests": "npx playwright test --grep @WAPI",
+    "apiTests": "npx playwright test --grep @API",
     "configFile": "npx playwright test --config playwright.config-other.js --project=chrome"
   },
   "keywords": [],
