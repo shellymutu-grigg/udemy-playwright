@@ -18,6 +18,7 @@ let config = {
     trace: 'on', // 'off', 'on', 'retain-on-failure'
     ignoreHttpsErrors: true,
     permissions: ['geolocation'],
+    video: 'retain-on-failure',
   },
 
   /* Configure projects for major browsers */
@@ -43,8 +44,8 @@ let config = {
       use: { 
         ...devices['Desktop Safari'],
         viewport: { 
-          width: 1520, 
-          height: 1020 
+          width: 720, 
+          height: 720 
         }  
       },
     },
