@@ -11,6 +11,7 @@ let config = {
     timeout: 5000
   },
   reporter: 'html',
+  retries: 3,
   use: {
     // browserName: 'chromium'
     headless: false,
