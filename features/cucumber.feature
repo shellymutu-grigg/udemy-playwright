@@ -1,8 +1,8 @@
-# Run cucumber: npx cucumber-js --exit
+# Run cucumber: npx cucumber-js --tags "@validation"  --exit
 
 Feature: Validating cucumber integration
   @validation
-  Scenario: Place an order
+  Scenario Outline: Place an order
     Given a user is able to login with username and password
     When add "<productName>" item to cart
     Then verify that "<productName>" item is displayed in the cart and place order
@@ -10,5 +10,6 @@ Feature: Validating cucumber integration
     Then verify that the order is present in the order history 
 
   Examples:
-      | productName  |
-      | ZARA COAT 3  |
+      | productName     |
+      | ZARA COAT 3     |
+      | ADIDAS ORIGINAL |
