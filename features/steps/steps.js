@@ -1,14 +1,6 @@
-const { pageObjectManager } = require('../../pageObjects/pageObjectManager');
 const { When, Then, Given } = require('@cucumber/cucumber');
-const playwright = require('@playwright/test');
 
     Given('a user is able to login with username and password', { timeout: 100 * 1000}, async function () {
-        const browser = await playwright.chromium.launch({
-            headless: false
-        });
-        const context = await browser.newContext();
-        this.page = await context.newPage();
-        this.pageObjects = new pageObjectManager(this.page);
         this.login = await this.pageObjects.getLoginPage(this.page);     
         await this.login.goTo();
         await this.login.login(process.env.username_rahulshetty, process.env.password_rahulshetty);
@@ -37,5 +29,5 @@ const playwright = require('@playwright/test');
        
     Then('verify that the order is present in the order history', async function () {
         const orders = this.pageObjects.getOrdersPage(this.page);
-        await orders.validateOrder(this.orderId);
+        await orders.validateOrder(orderId);
     });
