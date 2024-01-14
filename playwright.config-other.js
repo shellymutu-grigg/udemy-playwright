@@ -13,16 +13,24 @@ let config = {
   reporter: 'html',
   use: {
     // browserName: 'chromium'
-    headless: true,
+    headless: false,
     screenshot: 'on', // 'off', 'on', 'only-on-failure'
     trace: 'on', // 'off', 'on', 'retain-on-failure'
+    ignoreHttpsErrors: true,
+    permissions: ['geolocation'],
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      name: 'chrome',
+      use: { 
+        ...devices['Desktop Chrome'], 
+        viewport: { 
+          width: 1020, 
+          height: 1020 
+        } 
+      },
     },
 
      {
@@ -32,7 +40,20 @@ let config = {
 
     {
       name: 'safari',
-      use: { ...devices['Desktop Safari'] },
+      use: { 
+        ...devices['Desktop Safari'],
+        viewport: { 
+          width: 1520, 
+          height: 1020 
+        }  
+      },
+    },
+    {
+      name: 'iPhone11',
+      use: { 
+        ...devices['iPhone 11'],
+        browserName: 'chromium',
+      },
     },
   ],
 };
