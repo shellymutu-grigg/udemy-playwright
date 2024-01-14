@@ -4,7 +4,7 @@ const { After, Before, AfterStep, Status } = require('@cucumber/cucumber');
 
 Before({ tags: '@error or @validation'}, async function (){
     const browser = await playwright.chromium.launch({
-        headless: true
+        headless: false
     });
     const context = await browser.newContext();
     this.page = await context.newPage();

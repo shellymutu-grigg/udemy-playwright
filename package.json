@@ -7,7 +7,8 @@
     "test": "npx playwright test --config playwright.config.js",
     "webTests": "npx playwright test --grep @Web",
     "apiTests": "npx playwright test --grep @API",
-    "configFile": "npx playwright test --config playwright.config-other.js --project=chrome"
+    "configFile": "npx playwright test --config playwright.config-other.js --project=chrome",
+    "cucumberRegression": "npx cucumber-js --tags '@error' --retry 1 --exit --format html:./features/cucumber-report.html"
   },
   "keywords": [],
   "author": "",
