@@ -12,6 +12,7 @@ let config = {
   },
   reporter: 'html',
   retries: 3,
+  workers: 4,
   use: {
     // browserName: 'chromium'
     headless: false,
