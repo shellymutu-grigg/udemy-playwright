@@ -11,11 +11,11 @@ let config = {
     timeout: 5000
   },
   reporter: 'html',
-  retries: 3,
+  retries: 2,
   workers: 4,
   use: {
     // browserName: 'chromium'
-    headless: false,
+    headless: true,
     screenshot: 'on', // 'off', 'on', 'only-on-failure'
     trace: 'on', // 'off', 'on', 'retain-on-failure'
     ignoreHttpsErrors: true,
