@@ -2,9 +2,9 @@
  * Run in non headless mode: npx playwright test --headed 
  * Run playwright UI: npx playwright test --ui 
  * Run playwright: npx playwright test
- * Run specific playwright file: npx playwright test tests/section12RefactorTest.spec.js 
+ * Run specific playwright file: npx playwright test tests/section12ParamateriseDataTest.spec.js 
  * test.only to run a single test
- * Run specific playwright file in debug mode: npx playwright test tests/section12RefactorTest.spec.js --debug
+ * Run specific playwright file in debug mode: npx playwright test tests/section12ParamateriseDataTest.spec.js --debug
  * Generate code: npx playwright codegen htps://www.google.com
 */
 
