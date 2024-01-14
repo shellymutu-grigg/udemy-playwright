@@ -10,12 +10,13 @@
 
 const { test } = require('@playwright/test');
 const { pageObjectManager } = require('../pageObjects/pageObjectManager');
+const testData = require('../data/testData');
 
 test('Playwright refactor to use page objects model', async ({ page }) =>
 {
-    const username = process.env.username_rahulshetty;
-    const password = process.env.password_rahulshetty;
-    const productName = 'ZARA COAT 3';
+    const username = testData.username;
+    const password = testData.password;
+    const productName = testData.productName;
 
     const pageObjects = new pageObjectManager(page);
     const login = pageObjects.getLoginPage(page);
