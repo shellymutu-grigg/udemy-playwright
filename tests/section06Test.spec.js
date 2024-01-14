@@ -10,11 +10,9 @@
 
 const { test, expect } = require('@playwright/test');
 
-import { resetPassword } from '../utils/resetPassword';
-
 test('Playwright script to dynamically find product', async ({ page }) =>
 {
-    const email = process.env.username_rahulshetty;
+    const username = process.env.username_rahulshetty;
     const password = process.env.password_rahulshetty;
     const usernameField = page.locator('#userEmail');
     const passwordField = page.locator('#userPassword');
@@ -34,7 +32,7 @@ test('Playwright script to dynamically find product', async ({ page }) =>
     console.log('Page title: ', await page.title());
 
     await expect(page).toHaveTitle("Let's Shop");
-    await usernameField.fill(email);
+    await usernameField.fill(username);
     await passwordField.fill(password);
     await loginBtn.click();
     await page.waitForLoadState('networkidle');
@@ -42,17 +40,15 @@ test('Playwright script to dynamically find product', async ({ page }) =>
     console.log('isLoggedIn:', isLoggedIn);
 
     if(!isLoggedIn){
-        await resetPassword(
-            forgotPasswordLink, 
-            emailField, 
-            resetPasswordField, 
-            confirmPasswordField, 
-            submitButton, 
-            email, 
-            password, 
-            usernameField, 
-            passwordField, 
-            loginBtn);
+        await forgotPasswordLink.click();
+        await emailField.fill(username);
+        await resetPasswordField.fill(password);
+        await confirmPasswordField.fill(password);
+        await submitButton.click();
+    
+        await usernameField.fill(username);
+        await passwordField.fill(password);
+        await loginBtn.click();
     }
 
     // allTextContent() method will not wait for element load like at L#49
@@ -86,7 +82,7 @@ test('Playwright script to dynamically find product', async ({ page }) =>
             break;
         }
     }
-    await expect(page.locator(".user__name [type='text']").first()).toHaveText(email);
+    await expect(page.locator(".user__name [type='text']").first()).toHaveText(username);
     await page.locator('.action__submit').click();
     await expect(page.locator('.hero-primary')).toHaveText(' Thankyou for the order. ');
     const orderId = (await page.locator('.em-spacer-1 .ng-star-inserted').textContent()).split(' ')[2];
