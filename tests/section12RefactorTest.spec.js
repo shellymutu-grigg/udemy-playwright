@@ -8,24 +8,21 @@
  * Generate code: npx playwright codegen htps://www.google.com
 */
 
-const { test, expect } = require('@playwright/test');
-const { loginPage } = require('../pageObjects/loginPage');
-const { dashboardPage } = require('../pageObjects/dashboardPage');
-const { cartPage } = require('../pageObjects/cartPage');
-const { orderPage } = require('../pageObjects/orderPage');
-const { ordersPage } = require('../pageObjects/ordersPage');
+const { test } = require('@playwright/test');
+const { pageObjectManager } = require('../pageObjects/pageObjectManager');
 
 test('Playwright refactor to use page objects model', async ({ page }) =>
 {
     const username = process.env.username_rahulshetty;
     const password = process.env.password_rahulshetty;
     const productName = 'ZARA COAT 3';
-    
-    const login = new loginPage(page);
-    const dashboard = new dashboardPage(page);
-    const cart = new cartPage(page);
-    const order = new orderPage(page);
-    const orders = new ordersPage(page);
+
+    const pageObjects = new pageObjectManager(page);
+    const login = pageObjects.getLoginPage(page);
+    const dashboard = pageObjects.getDashboardPage(page);
+    const cart = pageObjects.getCartPage(page);
+    const order = pageObjects.getOrderPage(page);
+    const orders = pageObjects.getOrdersPage(page);
 
     await login.goTo();
     await login.login(username, password);
