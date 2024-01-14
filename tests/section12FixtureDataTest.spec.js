@@ -33,7 +33,8 @@ customTest('Playwright execute tests using fixture data', async ({ page, testDat
     await dashboard.addProductToCart(productName);
     await dashboard.navigateToCart();
 
-    await cart.placeOrder(productName, username);
+    await cart.placeOrder(productName);
+    await cart.validateOrderSuccessMessage(username);
 
     const orderId = await order.confirmOrderDetails();
     await order.navigateToOrdersPage();

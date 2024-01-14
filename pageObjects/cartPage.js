@@ -13,7 +13,7 @@ class cartPage{
         this.message = this.page.locator('.hero-primary');
     }
 
-    async placeOrder(productName, username){
+    async placeOrder(productName){
         await this.ordersList.first().waitFor();
 
         // isVisible() does not implement the auto wait
@@ -30,6 +30,9 @@ class cartPage{
                 break;
             }
         }
+    }
+
+    async validateOrderSuccessMessage(username){
         await expect(this.usernameMessage.first()).toHaveText(username);
         await this.submit.click();
         await expect(this.message).toHaveText(' Thankyou for the order. ');
