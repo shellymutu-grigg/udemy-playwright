@@ -29,6 +29,7 @@ customTest('Playwright execute tests using fixture data', async ({ page, testDat
 
     await login.goTo();
     await login.login(username, password);
+    await login.checkLogin(username, password);
 
     await dashboard.addProductToCart(productName);
     await dashboard.navigateToCart();

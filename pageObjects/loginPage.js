@@ -19,23 +19,27 @@ class loginPage{
     }
 
     async login(username, password){
+        console.log('Page title:', await this.page.title());
         await expect(this.page).toHaveTitle("Let's Shop");
         await this.usernameField.fill(username);
         await this.passwordField.fill(password);
         await this.loginBtn.click();
+    }
 
+    async checkLogin(username, password){
         await this.page.waitForLoadState('networkidle');
         const isLoggedIn = await this.page.locator("button:has-text('HOME')").isVisible();
         console.log('isLoggedIn:', isLoggedIn);
 
         if(!isLoggedIn){
-            resetPassword(username, password);
+            console.log('need to reset password');
+            await this.resetPassword(username, password);
         }
     }
 
     async resetPassword(username, password){
         await this.forgotPasswordLink.click();
-        await this.emailField.fill(email);
+        await this.emailField.fill(username);
         await this.resetPasswordField.fill(password);
         await this.confirmPasswordField.fill(password);
         await this.submitButton.click();
