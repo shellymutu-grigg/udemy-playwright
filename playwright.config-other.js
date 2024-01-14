@@ -12,9 +12,8 @@ let config = {
   },
   reporter: 'html',
   use: {
-    // Safari = webkit
     // browserName: 'chromium'
-    headless: false,
+    headless: true,
     screenshot: 'on', // 'off', 'on', 'only-on-failure'
     trace: 'on', // 'off', 'on', 'retain-on-failure'
   },
@@ -26,15 +25,15 @@ let config = {
       use: { ...devices['Desktop Chrome'] },
     },
 
-     // {
-    //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'] },
-    // },
+     {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
+    },
 
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] },
-    // },
+    {
+      name: 'safari',
+      use: { ...devices['Desktop Safari'] },
+    },
   ],
 };
 module.exports = config;

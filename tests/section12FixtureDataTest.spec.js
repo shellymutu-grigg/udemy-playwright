@@ -6,6 +6,8 @@
  * test.only to run a single test
  * Run specific playwright file in debug mode: npx playwright test tests/section12FixtureDataTest.spec.js --debug
  * Generate code: npx playwright codegen htps://www.google.com
+ * Run test with specfic config file npx playwright test tests/section12FixtureDataTest.spec.js--config playwright.config-other.js 
+ * Run specific project in config file npx playwright test tests/section12FixtureDataTest.spec.js --config playwright.config-other.js --project=safari
 */
 
 const { customTest } = require('../data/fixtureData');
