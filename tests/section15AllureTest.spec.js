@@ -14,6 +14,8 @@
  *  - npx playwright test --grep @API --reporter=line,allure-playwright
  *  - allure generate 
  *  - allure open
+ * 
+ * Run script: npm run webTests
 */
 
 const { test, expect, request } = require('@playwright/test');
