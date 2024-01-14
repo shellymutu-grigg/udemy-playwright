@@ -11,7 +11,13 @@
 
 const { test, expect } = require('@playwright/test');
 
-test('Playwright assertions', async ({ page }) =>
+test.describe.configure(
+    {
+        mode: 'parallel', // serial if have dependant subsequent tests
+    }
+);
+
+test('Playwright workers', async ({ page }) =>
 {
     const username = page.locator('#username');
     const password = page.locator("[type='password']");
