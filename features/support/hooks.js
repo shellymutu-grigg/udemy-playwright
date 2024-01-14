@@ -2,7 +2,7 @@ const { pageObjectManager } = require('../../pageObjects/pageObjectManager');
 const playwright = require('@playwright/test');
 const { After, Before, AfterStep, Status } = require('@cucumber/cucumber');
 
-Before(async function (){
+Before({ tags: '@error or @validation'}, async function (){
     const browser = await playwright.chromium.launch({
         headless: true
     });

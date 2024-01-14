@@ -1,7 +1,7 @@
 # Run cucumber: npx cucumber-js --exit
 
 Feature: Validating cucumber integration
-
+  @validation
   Scenario: Place an order
     Given a user is able to login with username and password
     When add "<productName>" item to cart
