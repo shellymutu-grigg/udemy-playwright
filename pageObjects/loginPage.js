@@ -23,6 +23,14 @@ class loginPage{
         await this.usernameField.fill(username);
         await this.passwordField.fill(password);
         await this.loginBtn.click();
+
+        await this.page.waitForLoadState('networkidle');
+        const isLoggedIn = await this.page.locator("button:has-text('HOME')").isVisible();
+        console.log('isLoggedIn:', isLoggedIn);
+
+        if(!isLoggedIn){
+            resetPassword(username, password);
+        }
     }
 
     async resetPassword(username, password){
