@@ -1,3 +1,5 @@
+# Run cucumber: npx cucumber-js
+
 Feature: Validating cucumber integration
 
   Scenario: Place an order
