@@ -8,7 +8,7 @@
  * Generate code: npx playwright codegen htps://www.google.com
  * Run test with specfic config file npx playwright test tests/section12FixtureDataTest.spec.js--config playwright.config-other.js 
  * Run specific project in config file npx playwright test tests/section12FixtureDataTest.spec.js --config playwright.config-other.js --project=safari
- * Run for speciic device type npx playwright test tests/section12FixtureDataTest.spec.js --config playwright.config-other.js --project=iPhone11
+ * Run for specific device type npx playwright test tests/section12FixtureDataTest.spec.js --config playwright.config-other.js --project=iPhone11
 */
 
 const { customTest } = require('../data/fixtureData');

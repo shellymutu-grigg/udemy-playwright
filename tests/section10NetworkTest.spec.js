@@ -8,7 +8,7 @@
  * Generate code: npx playwright codegen htps://www.google.com
 */
 
-const { test, expect, request } = require('@playwright/test');
+const { test, request } = require('@playwright/test');
 const { apiUtils } = require('../utils/apiUtils');
 
 const loginPayLoad = {
